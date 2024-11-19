@@ -3,21 +3,27 @@ import { Switch, Text, TextInput, TouchableOpacity, View } from "react-native";
 import stylesHome from "./stylesHome";
 import FloatActionButton from "../../components/generics/FloatActionButton";
 import ActionButton from "../../components/generics/ActionButton";
+import passwordService from "../../services/passwordService";
 
 const Home = () => {
   const [password, setPassword] = useState("");
   const [length, setLength] = useState(12);
   const [includeNumbers, setIncludeNumbers] = useState(true);
-  const [includeSpecial, setIncludeSpecial] = useState(true);
+  const [includeSpecialChars, setIncludeSpecialChars] = useState(true);
 
   const generatePassword = () => {
-    setPassword("SenhaGerada123!");
+    let pass = passwordService.generatePassword(
+      length,
+      includeNumbers,
+      includeSpecialChars
+    );
+    setPassword(pass);
   };
 
   return (
     <View style={stylesHome.container}>
       <Text style={stylesHome.header}>Gerador de Senhas</Text>
-
+      <Text></Text>
       <View style={stylesHome.passwordContainer}>
         <TextInput
           style={stylesHome.passwordInput}
@@ -27,7 +33,7 @@ const Home = () => {
         />
         <ActionButton
           title="Copiar"
-          onPress={()=>{}}
+          onPress={() => {}}
           containerStyle={stylesHome.copyButton}
           textStyle={{ color: "#fff" }}
         />
@@ -49,8 +55,8 @@ const Home = () => {
             Incluir Caracteres Especiais
           </Text>
           <Switch
-            value={includeSpecial}
-            onValueChange={(value) => setIncludeSpecial(value)}
+            value={includeSpecialChars}
+            onValueChange={(value) => setIncludeSpecialChars(value)}
           />
         </View>
       </View>
@@ -66,7 +72,7 @@ const Home = () => {
         Dica: Use senhas únicas para maior segurança!
       </Text>
 
-      <FloatActionButton icon="add" onPress={()=>{}} />
+      <FloatActionButton icon="add" onPress={() => {}} />
     </View>
   );
 };

@@ -20,12 +20,7 @@ const ActionButton: React.FC<ActionButtonProps> = ({
   textStyle,
 }) => {
   return (
-    <TouchableOpacity
-      style={containerStyle}
-      onPress={() => {
-        onPress;
-      }}
-    >
+    <TouchableOpacity style={containerStyle} onPress={onPress}>
       <Text style={textStyle}>{title}</Text>
     </TouchableOpacity>
   );
