@@ -3,9 +3,7 @@ import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { usePasswordContext } from "../../contexts/PasswordContext";
 
-type PasswordLengthProps = {};
-
-const PasswordLength: React.FC<PasswordLengthProps> = () => {
+const PasswordLength = () => {
   const { length, setLength } = usePasswordContext();
   return (
     <View>

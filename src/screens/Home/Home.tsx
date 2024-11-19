@@ -4,12 +4,14 @@ import stylesHome from "./stylesHome";
 import FloatActionButton from "../../components/generics/FloatActionButton";
 import ActionButton from "../../components/generics/ActionButton";
 import passwordService from "../../services/passwordService";
+import PasswordLength from "../../components/generics/PasswordLength";
+import { usePasswordContext } from "../../contexts/PasswordContext";
 
 const Home = () => {
   const [password, setPassword] = useState("");
-  const [length, setLength] = useState(12);
   const [includeNumbers, setIncludeNumbers] = useState(true);
   const [includeSpecialChars, setIncludeSpecialChars] = useState(true);
+  const { length } = usePasswordContext();
 
   const generatePassword = () => {
     let pass = passwordService.generatePassword(
@@ -18,6 +20,10 @@ const Home = () => {
       includeSpecialChars
     );
     setPassword(pass);
+  };
+
+  const handleClipBoard = () => {
+    //salvar no clipboard
   };
 
   return (
@@ -33,14 +39,16 @@ const Home = () => {
         />
         <ActionButton
           title="Copiar"
-          onPress={() => {}}
+          onPress={handleClipBoard}
           containerStyle={stylesHome.copyButton}
           textStyle={{ color: "#fff" }}
         />
       </View>
 
       <View style={stylesHome.optionsContainer}>
-        <Text style={stylesHome.optionLabel}>Comprimento: {length}</Text>
+        <View style={stylesHome.sliderContainer}>
+          <PasswordLength />
+        </View>
 
         <View style={stylesHome.switchContainer}>
           <Text style={stylesHome.optionLabel}>Incluir Números</Text>
