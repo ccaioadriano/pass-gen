@@ -6,6 +6,7 @@ import ActionButton from "../../components/generics/ActionButton";
 import passwordService from "../../services/passwordService";
 import PasswordLength from "../../components/generics/PasswordLength";
 import { usePasswordContext } from "../../contexts/PasswordContext";
+import * as Clipboard from "expo-clipboard";
 
 const Home = () => {
   const [password, setPassword] = useState("");
@@ -22,8 +23,11 @@ const Home = () => {
     setPassword(pass);
   };
 
-  const handleClipBoard = () => {
+  const handleClipBoard = async () => {
     //salvar no clipboard
+    if (password.length > 0) {
+      await Clipboard.setStringAsync(password);
+    }
   };
 
   return (
