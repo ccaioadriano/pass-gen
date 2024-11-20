@@ -1,40 +1,38 @@
-import { Slider, Text } from "@rneui/themed";
-import React, { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
 import { usePasswordContext } from "../../contexts/PasswordContext";
+import Slider from "@react-native-community/slider";
 
 const PasswordLength = () => {
   const { length, setLength } = usePasswordContext();
   return (
     <View>
-      <Text>Comprimento: {length}</Text>
+      <Text style={styles.label}>Tamanho da senha: {length}</Text>
+
       <Slider
+        style={styles.slider}
+        minimumValue={0} // Valor mínimo
+        maximumValue={24} // Valor máximo
+        step={1} // Incremento
         value={length}
-        onValueChange={setLength}
-        maximumValue={24}
-        minimumValue={1}
-        step={1}
-        allowTouchTrack
-        trackStyle={{
-          height: 6,
-          borderRadius: 3,
-          backgroundColor: "#d3d3d3", // Cor neutra para o trilho
-        }}
-        thumbStyle={{
-          height: 24,
-          width: 24,
-          backgroundColor: "#2089dc", // Azul chamativo para o botão
-          borderColor: "#fff", // Borda branca para destaque
-          borderWidth: 2,
-          shadowColor: "#000",
-          shadowOffset: { width: 0, height: 2 },
-          shadowOpacity: 0.3,
-          shadowRadius: 2,
-          elevation: 3,
-        }}
+        onValueChange={(val) => setLength(val)} // Atualiza o estado
+        minimumTrackTintColor="#1E90FF" // Cor da trilha mínima
+        maximumTrackTintColor="#D3D3D3" // Cor da trilha máxima
+        thumbTintColor="#1E90FF" // Cor do botão
       />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  label: {
+    fontSize: 18,
+    marginBottom: 5,
+    marginLeft:6
+  },
+  slider: {
+    height: 40,
+  },
+});
 
 export default PasswordLength;

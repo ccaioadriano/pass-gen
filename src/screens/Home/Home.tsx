@@ -29,7 +29,6 @@ const Home = () => {
   return (
     <View style={stylesHome.container}>
       <Text style={stylesHome.header}>Gerador de Senhas</Text>
-      <Text></Text>
       <View style={stylesHome.passwordContainer}>
         <TextInput
           style={stylesHome.passwordInput}
