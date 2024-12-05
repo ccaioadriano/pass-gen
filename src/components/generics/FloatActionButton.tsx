@@ -41,6 +41,7 @@ const FloatActionButton: React.FC<FloatActionButtonProps> = ({
             }
           : containerStyle
       }
+      onPress={onPress}
     >
       <Icon name={icon} size={size ? size : 30} color="#01a699" />
     </TouchableOpacity>

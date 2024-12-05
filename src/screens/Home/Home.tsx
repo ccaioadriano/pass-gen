@@ -29,8 +29,16 @@ const Home = ({ navigation }: { navigation: any }) => {
     }
   };
 
-  const handleSavePassword = () => {
-    let response = passwordService.savePassword(password);
+  const handleSavePassword = async () => {
+    try {
+      let message = await passwordService.savePassword(password);
+      navigation.navigate("PasswordList", {
+        password: password || "123",
+        message: message,
+      });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -83,7 +91,7 @@ const Home = ({ navigation }: { navigation: any }) => {
 
         <TouchableOpacity
           style={stylesHome.linkContainer}
-          onPress={() => navigation.navigate("PasswordList")}
+          onPress={handleSavePassword}
         >
           <Text style={stylesHome.linkText}>Ver lista de senhas</Text>
         </TouchableOpacity>

@@ -27,7 +27,7 @@ export default function App() {
         <SafeAreaView style={styles.container}>
           <Stack.Navigator initialRouteName="Home">
             <Stack.Screen name="Home" component={Home} />
-            <Stack.Screen name="PasswordList" component={PasswordList} />
+            <Stack.Screen name="PasswordList" component={PasswordList} options={{ title: 'Minhas senhas' }} />
           </Stack.Navigator>
         </SafeAreaView>
       </PasswordProvider>
