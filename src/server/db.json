@@ -1,0 +1,20 @@
+{
+  "passwords": [
+    {
+      "id": "1",
+      "password": "senhaSuperSecreta123"
+    },
+    {
+      "id": "2",
+      "password": "minhaSenha456"
+    },
+    {
+      "id": "3",
+      "password": "admin123!"
+    },
+    {
+      "id": "52c6",
+      "password": "novaSenha123"
+    }
+  ]
+}
