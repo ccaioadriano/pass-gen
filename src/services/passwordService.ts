@@ -1,49 +1,30 @@
 // logica das senhas
 
 const passwordService = {
-    generatePassword: (length: number, includeNumbers: boolean, includeEspecialChars: boolean) => {
-        const especialChars =
-            "!@#$%^&*()-_=+[]{};:'\",.<>?/|`~\\";
-
+    generatePassword: (
+        length: number,
+        includeNumbers: boolean,
+        includeEspecialChars: boolean
+      ): string => {
+        const especialChars = "!@#$%^&*()-_=+[]{};:'\",.<>?/|`~\\";
         const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         const lowercase = "abcdefghijklmnopqrstuvwxyz";
-        const numbers = "0123456789"
+        const numbers = "0123456789";
+      
+        // Construir a pool de caracteres com base nas opções fornecidas
+        let charPool = uppercase + lowercase;
+        if (includeEspecialChars) charPool += especialChars;
+        if (includeNumbers) charPool += numbers;
+      
+        // Gerar a senha com base na pool de caracteres
+        return Array.from({ length }, () =>
+          charPool.charAt(Math.floor(Math.random() * charPool.length))
+        ).join("");
+      },
 
-        let password = "";
-
-        if (includeEspecialChars && includeNumbers) {
-            let fullChars = `${especialChars}${uppercase}${lowercase}${numbers}`
-            for (let i = 0; i < length; i++) {
-                const randomIndex = Math.floor(Math.random() * fullChars.length);
-                password += fullChars[randomIndex];
-            }
-            return password.trim();
-        } else if (includeEspecialChars) {
-            let fullChars = `${especialChars}${uppercase}${lowercase}`
-            for (let i = 0; i < length; i++) {
-                const randomIndex = Math.floor(Math.random() * fullChars.length);
-                password += fullChars[randomIndex];
-            }
-            return password.trim();
-        } else if (includeNumbers) {
-            let fullChars = `${numbers}${uppercase}${lowercase}`
-            for (let i = 0; i < length; i++) {
-                const randomIndex = Math.floor(Math.random() * fullChars.length);
-                password += fullChars[randomIndex];
-            }
-            return password.trim();
-        } else {
-            let fullChars = `${uppercase}${lowercase}`
-            for (let i = 0; i < length; i++) {
-                const randomIndex = Math.floor(Math.random() * fullChars.length);
-                password += fullChars[randomIndex];
-            }
-            return password.trim();
-        }
-
-    },
-
-    savePassword: () => { }
+    savePassword: (passToSave:string) => { 
+        return "Senha salva com sucesso!"
+    }
 }
 
 
