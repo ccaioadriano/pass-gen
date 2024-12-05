@@ -91,7 +91,9 @@ const Home = ({ navigation }: { navigation: any }) => {
 
         <TouchableOpacity
           style={stylesHome.linkContainer}
-          onPress={handleSavePassword}
+          onPress={() => {
+            navigation.navigate("PasswordList");
+          }}
         >
           <Text style={stylesHome.linkText}>Ver lista de senhas</Text>
         </TouchableOpacity>
