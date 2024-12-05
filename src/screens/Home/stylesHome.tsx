@@ -1,52 +1,79 @@
 import { StyleSheet } from "react-native";
 
-const styles = StyleSheet.create({
-  container: { flex: 1, padding: 20, backgroundColor: "#F5F5F5" },
-  header: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 50,
-    textAlign: "center",
-  },
-  passwordContainer: { flexDirection: "row", marginBottom: 20 },
-  passwordInput: {
+const stylesHome = StyleSheet.create({
+  container: {
     flex: 1,
+    padding: 20,
+    backgroundColor: "#F5F5F5",
+    justifyContent: "space-between", // Isso ajuda a distribuir o conteúdo de forma mais balanceada
+  },
+  header: {
+    fontSize: 28,
+    fontWeight: "bold",
+    color: "#333",
+    textAlign: "center", // Adiciona espaço abaixo do título
+  },
+  passwordContainer: {
+    marginBottom: 30, // Espaço abaixo do campo de senha
+    alignItems: "center",
+  },
+  passwordInput: {
+    width: "100%",
     borderWidth: 1,
-    borderColor: "#CCC",
-    padding: 10,
-    borderRadius: 5,
-    backgroundColor: "#FFF",
+    padding: 15,
+    fontSize: 18,
+    borderRadius: 8,
+    backgroundColor: "#fff",
+    textAlign: "center",
+    marginBottom: 15, // Espaço entre o campo de senha e o botão
   },
   copyButton: {
-    marginLeft: 10,
-    backgroundColor: "#4CAF50",
-    padding: 10,
-    borderRadius: 5,
+    backgroundColor: "#007BFF", // Cor chamativa
+    paddingVertical: 10,
+    paddingHorizontal: 30,
+    borderRadius: 8,
   },
-  copyButtonText: { color: "#FFF" },
-  optionsContainer: { marginBottom: 20 },
-  optionLabel: { fontSize: 16, marginBottom: 5 },
-  slider: { width: "100%" },
+  optionsContainer: {
+    marginBottom: 20,
+    paddingHorizontal: 10,
+  },
   switchContainer: {
     flexDirection: "row",
-    justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: 10,
+    justifyContent: "space-between",
+    marginBottom: 20, // Espaço entre cada switch
+  },
+  optionLabel: {
+    fontSize: 16,
+    color: "#555",
   },
   generateButton: {
-    backgroundColor: "#4CAF50",
-    padding: 15,
-    borderRadius: 5,
-    alignItems: "center",
-  },
-  generateButtonText: { color: "#FFF", fontSize: 18 },
-  footerText: {
-    marginTop: 20,
-    fontSize: 14,
-    color: "#666",
+    backgroundColor: "#007BFF",
+    paddingVertical: 15,
+    borderRadius: 8,
+    alignContent: 'center', 
     textAlign: "center",
   },
-  sliderContainer: {},
+  linkContainer: {
+    alignItems: "center",
+    marginTop: 20,
+  },
+  linkText: {
+    fontSize: 18,
+    color: "#007BFF",
+    textDecorationLine: "underline",
+  },
+  footerButtonsContainer:{
+    padding: 20,
+    marginBottom: 60
+  },
+
+  footerText: {
+    fontSize: 12,
+    color: "#777",
+    textAlign: "center",
+    marginBottom: 30, // Espaço abaixo do texto de dica
+  },
 });
 
-export default styles;
+export default stylesHome;

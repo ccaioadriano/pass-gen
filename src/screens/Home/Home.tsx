@@ -1,20 +1,20 @@
+import * as Clipboard from "expo-clipboard";
 import React, { useState } from "react";
 import { Switch, Text, TextInput, TouchableOpacity, View } from "react-native";
-import stylesHome from "./stylesHome";
-import FloatActionButton from "../../components/generics/FloatActionButton";
 import ActionButton from "../../components/generics/ActionButton";
-import passwordService from "../../services/passwordService";
+import FloatActionButton from "../../components/generics/FloatActionButton";
 import PasswordLength from "../../components/generics/PasswordLength";
 import { usePasswordContext } from "../../contexts/PasswordContext";
-import * as Clipboard from "expo-clipboard";
+import passwordService from "../../services/passwordService";
+import stylesHome from "./stylesHome"; // Certifique-se de ter o arquivo stylesHome.ts ou defina aqui
 
-const Home = () => {
+const Home = ({ navigation }: { navigation: any }) => {
   const [password, setPassword] = useState("");
   const [includeNumbers, setIncludeNumbers] = useState(true);
   const [includeSpecialChars, setIncludeSpecialChars] = useState(true);
   const { length } = usePasswordContext();
 
-  const generatePassword = () => {
+  const handleGeneratePassword = () => {
     let pass = passwordService.generatePassword(
       length,
       includeNumbers,
@@ -24,10 +24,13 @@ const Home = () => {
   };
 
   const handleClipBoard = async () => {
-    //salvar no clipboard
     if (password.length > 0) {
       await Clipboard.setStringAsync(password);
     }
+  };
+
+  const handleSavePassword = () => {
+    let response = passwordService.savePassword(password);
   };
 
   return (
@@ -49,9 +52,7 @@ const Home = () => {
       </View>
 
       <View style={stylesHome.optionsContainer}>
-        <View style={stylesHome.sliderContainer}>
-          <PasswordLength />
-        </View>
+        <PasswordLength />
 
         <View style={stylesHome.switchContainer}>
           <Text style={stylesHome.optionLabel}>Incluir Números</Text>
@@ -72,18 +73,23 @@ const Home = () => {
         </View>
       </View>
 
-      <ActionButton
-        title="Gerar Senha"
-        onPress={generatePassword}
-        containerStyle={stylesHome.generateButton}
-        textStyle={{ color: "#fff" }}
-      />
+      <View style={stylesHome.footerButtonsContainer}>
+        <ActionButton
+          title="Gerar Senha"
+          onPress={handleGeneratePassword}
+          containerStyle={stylesHome.generateButton}
+          textStyle={{ color: "#fff", textAlign: "center" }}
+        />
 
-      <Text style={stylesHome.footerText}>
-        Dica: Use senhas únicas para maior segurança!
-      </Text>
+        <TouchableOpacity
+          style={stylesHome.linkContainer}
+          onPress={() => navigation.navigate("PasswordList")}
+        >
+          <Text style={stylesHome.linkText}>Ver lista de senhas</Text>
+        </TouchableOpacity>
+      </View>
 
-      <FloatActionButton icon="add" onPress={() => {}} />
+      <FloatActionButton icon="add" onPress={handleSavePassword} />
     </View>
   );
 };
