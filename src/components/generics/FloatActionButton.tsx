@@ -13,6 +13,7 @@ interface FloatActionButtonProps {
   onPress: () => void;
   containerStyle?: StyleProp<ViewStyle>;
   textStyle?: StyleProp<TextStyle>;
+  disabled: boolean;
 }
 
 const FloatActionButton: React.FC<FloatActionButtonProps> = ({
@@ -21,10 +22,11 @@ const FloatActionButton: React.FC<FloatActionButtonProps> = ({
   onPress,
   containerStyle,
   iconColor,
+  disabled,
 }) => {
   return (
     <TouchableOpacity
-      style={
+      style={[
         !containerStyle
           ? {
               borderWidth: 1,
@@ -36,14 +38,20 @@ const FloatActionButton: React.FC<FloatActionButtonProps> = ({
               bottom: 10,
               right: 10,
               height: 70,
-              backgroundColor: "#fff",
+              backgroundColor: disabled ? "#e0e0e0" : "#fff", // Cor muda quando desabilitado
               borderRadius: 100,
             }
-          : containerStyle
-      }
+          : containerStyle,
+        { opacity: disabled ? 0.5 : 1 }, // Reduz opacidade quando desabilitado
+      ]}
       onPress={onPress}
+      disabled={disabled}
     >
-      <Icon name={icon} size={size ? size : 30} color="#01a699" />
+      <Icon
+        name={icon}
+        size={size ? size : 30}
+        color={disabled ? "#a1a1a1" : "#01a699"}
+      />
     </TouchableOpacity>
   );
 };
