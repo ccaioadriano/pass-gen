@@ -7,11 +7,14 @@ import PasswordLength from "../../components/generics/PasswordLength";
 import { usePasswordContext } from "../../contexts/PasswordContext";
 import passwordService from "../../services/passwordService";
 import stylesHome from "./stylesHome"; // Certifique-se de ter o arquivo stylesHome.ts ou defina aqui
+import { Snackbar } from "react-native-paper";
 
 const Home = ({ navigation }: { navigation: any }) => {
   const [password, setPassword] = useState("");
   const [includeNumbers, setIncludeNumbers] = useState(true);
   const [includeSpecialChars, setIncludeSpecialChars] = useState(true);
+  const [message, setMessage] = useState<string | any>("");
+  const [snackVisible, setSnackVisible] = useState(false);
   const { length } = usePasswordContext();
 
   const handleGeneratePassword = () => {

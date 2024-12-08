@@ -26,6 +26,10 @@ const passwordService = {
     const url = `http://192.168.18.4:3000/passwords`;
     const body = { password: passToSave };
 
+    if (!passToSave || passToSave.trim().length === 0) {
+      throw new Error("A senha não pode ser vazia!");
+    }
+
     const response = await fetch(url, {
       method: "POST",
       headers: {
@@ -33,14 +37,14 @@ const passwordService = {
       },
       body: JSON.stringify(body)
     });
-    // Processa a resposta como JSON
     const data = await response.json();
-    // Verifica se a resposta contém um `id`
     if (data && data.id) {
       return "Senha salva com sucesso!";
     } else {
       throw new Error("Erro ao salvar a senha!");
     }
+
+
   },
 
   getPasswords: async () => {
